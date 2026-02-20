@@ -1,0 +1,473 @@
+/* ══════════════════════════════════════════════════════════════
+   shared.css — Common styles used by both index.html and
+   certifications.html (variables, reset, cursor, nav, orbital
+   menu, footer, scrollbar, accessibility).
+   ══════════════════════════════════════════════════════════════ */
+
+/* ─── CSS Variables ─── */
+:root {
+    --black: #12121f;
+    --purple: #b388ff;
+    --blue: #5ad1ff;
+    --red: #ff6b6b;
+    --green: #39ff14;
+    --dark: #151530;
+    --card: #191932;
+    --border: #353560;
+    --glow-p: 0 0 10px #b388ff, 0 0 30px #b388ff80;
+    --glow-b: 0 0 10px #5ad1ff, 0 0 30px #5ad1ff80;
+    --glow-g: 0 0 10px #39ff14, 0 0 20px #39ff1480;
+    --pixel: 'Press Start 2P', monospace;
+    --mono: 'Share Tech Mono', monospace;
+}
+
+/* ─── Reset ─── */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--black);
+    color: #eeeeff;
+    font-family: var(--mono);
+    font-size: 16px;
+    overflow-x: hidden;
+    cursor: none;
+}
+
+/* ─── Custom Cursor ─── */
+#cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--purple);
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform .08s linear;
+    image-rendering: pixelated;
+    will-change: transform;
+}
+
+#cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 4px;
+    background: var(--purple);
+    pointer-events: none;
+    z-index: 9999;
+    will-change: transform;
+}
+
+/* ─── Scanlines overlay ─── */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px,
+            rgba(0, 0, 0, .08) 2px, rgba(0, 0, 0, .08) 4px);
+    pointer-events: none;
+    z-index: 9990;
+    animation: scanScroll 8s linear infinite;
+}
+
+@keyframes scanScroll {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 0 100%;
+    }
+}
+
+/* ─── Noise texture overlay ─── */
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9989;
+    opacity: .4;
+}
+
+/* ─── Starfield canvas ─── */
+#starfield {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* ─── Navigation bar ─── */
+#nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 500;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 32px;
+    background: rgba(18, 18, 31, .97);
+    border-bottom: 1px solid var(--border);
+    contain: layout paint;
+}
+
+.nav-logo {
+    font-family: var(--pixel);
+    font-size: clamp(12px, 1.4vw, 16px);
+    color: var(--purple);
+    text-shadow: var(--glow-p);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.nav-links a {
+    font-family: var(--pixel);
+    font-size: clamp(10px, 1.1vw, 13px);
+    color: #aaa;
+    text-decoration: none;
+    transition: color .2s, text-shadow .2s;
+    letter-spacing: 1px;
+}
+
+.nav-links a:hover {
+    color: var(--blue);
+    text-shadow: var(--glow-b);
+}
+
+.nav-links a.active {
+    color: var(--purple);
+    text-shadow: var(--glow-p);
+}
+
+/* ─── Shared keyframes ─── */
+@keyframes flicker {
+
+    0%,
+    95%,
+    100% {
+        opacity: 1;
+    }
+
+    96%,
+    98% {
+        opacity: .3;
+    }
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+/* ─── Footer ─── */
+footer {
+    text-align: center;
+    padding: 24px;
+    border-top: 1px solid var(--border);
+    font-family: var(--pixel);
+    font-size: 9px;
+    color: #666;
+    background: var(--black);
+    position: relative;
+    z-index: 1;
+}
+
+footer span {
+    color: var(--purple);
+}
+
+footer a {
+    color: var(--blue);
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-shadow: var(--glow-b);
+}
+
+/* ─── Reveal animation (used by both pages) ─── */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all .6s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--black);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--purple);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   SPACESHIP TOGGLE (mobile only)
+   ══════════════════════════════════════════════════════════════ */
+.ship-toggle {
+    display: none;
+    /* shown via @media below */
+    background: none;
+    border: 2px solid var(--purple);
+    color: var(--purple);
+    font-size: 22px;
+    padding: 4px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: transform .25s, box-shadow .25s;
+    position: relative;
+    z-index: 501;
+    line-height: 1;
+}
+
+.ship-toggle:hover,
+.ship-toggle:focus-visible {
+    transform: scale(1.15) rotate(-8deg);
+    box-shadow: var(--glow-p);
+    outline: none;
+}
+
+.ship-toggle[aria-expanded="true"] {
+    box-shadow: var(--glow-p);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   ORBITAL MENU OVERLAY (mobile full-screen nav)
+   ══════════════════════════════════════════════════════════════ */
+.orbital-menu {
+    position: fixed;
+    inset: 0;
+    z-index: 900;
+    background: radial-gradient(ellipse at center,
+            rgba(18, 18, 31, .97) 0%,
+            rgba(10, 10, 15, .99) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .35s ease, visibility .35s;
+}
+
+.orbital-menu.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.orbital-close {
+    position: absolute;
+    top: 24px;
+    right: 28px;
+    background: none;
+    border: 2px solid var(--red);
+    color: var(--red);
+    font-size: 18px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-family: var(--pixel);
+    transition: transform .2s, box-shadow .2s;
+    z-index: 910;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.orbital-close:hover {
+    transform: scale(1.2) rotate(90deg);
+    box-shadow: 0 0 20px var(--red);
+}
+
+.orbital-center {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.orbital-ship {
+    font-size: 48px;
+    filter: drop-shadow(0 0 20px var(--purple));
+    animation: shipPulse 2s ease-in-out infinite;
+    z-index: 2;
+}
+
+@keyframes shipPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 20px var(--purple));
+    }
+
+    50% {
+        transform: scale(1.08);
+        filter: drop-shadow(0 0 35px var(--blue));
+    }
+}
+
+.orbital-ring {
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    border: 1px solid rgba(179, 136, 255, .15);
+    border-radius: 50%;
+    animation: ringRotate 12s linear infinite;
+}
+
+@keyframes ringRotate {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Orbit links: positioned using CSS custom property --i as angle index */
+.orbit-link {
+    position: absolute;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    transform: rotate(calc(var(--i) * 60deg)) translateX(0) rotate(calc(var(--i) * -60deg)) scale(0);
+    opacity: 0;
+    transition: transform .45s cubic-bezier(.34, 1.56, .64, 1), opacity .3s ease;
+    transition-delay: calc(var(--i) * 70ms);
+}
+
+.orbital-menu.open .orbit-link {
+    transform: rotate(calc(var(--i) * 60deg)) translateX(130px) rotate(calc(var(--i) * -60deg)) scale(1);
+    opacity: 1;
+}
+
+.orbit-emoji {
+    font-size: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(179, 136, 255, .08);
+    border: 2px solid rgba(179, 136, 255, .25);
+    transition: transform .25s, border-color .25s, box-shadow .25s;
+}
+
+.orbit-link:hover .orbit-emoji,
+.orbit-link:focus .orbit-emoji {
+    transform: scale(1.2);
+    border-color: var(--blue);
+    box-shadow: 0 0 25px rgba(90, 209, 255, .5);
+}
+
+.orbit-label {
+    font-family: var(--pixel);
+    font-size: 7px;
+    color: var(--blue);
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(90, 209, 255, .4);
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity .2s, transform .2s;
+}
+
+.orbit-link:hover .orbit-label,
+.orbit-link:focus .orbit-label {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   RESPONSIVE — shared breakpoints
+   ══════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+
+    .ship-toggle {
+        display: flex;
+    }
+
+    #nav {
+        padding: 12px 16px;
+    }
+
+    /* Smaller orbit on compact screens */
+    .orbital-ring {
+        width: 200px;
+        height: 200px;
+    }
+
+    .orbital-menu.open .orbit-link {
+        transform: rotate(calc(var(--i) * 60deg)) translateX(105px) rotate(calc(var(--i) * -60deg)) scale(1);
+    }
+
+    /* Larger touch targets */
+    .orbit-emoji {
+        width: 60px;
+        height: 60px;
+        font-size: 30px;
+    }
+
+    /* Always show labels on mobile (no hover state on touch) */
+    .orbit-label {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ─── Reduced motion a11y ─── */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    #starfield {
+        display: none;
+    }
+
+    body::before {
+        animation: none;
+    }
+}

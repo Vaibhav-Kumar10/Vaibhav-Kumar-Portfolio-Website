@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover" />
+    <title>VAIBHAV.EXE | Certification Galaxy</title>
+    <meta name="description"
+        content="Vaibhav Kumar — Certification Galaxy. Travel through space to collect certifications." />
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230a0a0f'/><text y='24' font-size='24' fill='%23b388ff'>🏆</text></svg>" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323:wght@400&family=Share+Tech+Mono&display=swap"
+        rel="stylesheet" media="print" onload="this.media='all'" />
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap"
+            rel="stylesheet" />
+    </noscript>
+    <link rel="stylesheet" href="css/shared.css">
+    <link rel="stylesheet" href="css/certifications.css">
+</head>
+
+<body>
+
+    <!-- CUSTOM CURSOR -->
+    <div id="cursor"></div>
+    <div id="cursor-dot"></div>
+
+    <!-- RETURN HOME PLANET BUTTON -->
+    <a id="returnHomeBtn" href="index.html" aria-label="Return to Home Planet">
+        <span class="home-icon">🏠</span>
+        <span>HOME PLANET</span>
+    </a>
+
+    <!-- STARFIELD -->
+    <canvas id="starfield"></canvas>
+
+    <!-- NAV -->
+    <nav id="nav" aria-label="Main Navigation">
+        <a class="nav-logo" href="index.html">VAIBHAV.EXE</a>
+        <div class="nav-links">
+            <a href="index.html#hero">HOME</a>
+            <a href="index.html#experience">LEVELS</a>
+            <a href="index.html#skills">SKILLS</a>
+            <a href="index.html#projects">PROJECTS</a>
+            <a href="index.html#certs">CERTS</a>
+            <a href="index.html#contact">TERMINAL</a>
+        </div>
+        <!-- Spaceship toggle (mobile only) -->
+        <button id="ship-toggle" class="ship-toggle" aria-label="Open menu" aria-expanded="false">🚀</button>
+    </nav>
+
+    <!-- Orbital menu overlay (mobile) -->
+    <div id="orbital-menu" class="orbital-menu" aria-hidden="true">
+        <button class="orbital-close" id="orbital-close" aria-label="Close menu">✕</button>
+        <div class="orbital-center">
+            <span class="orbital-ship">🚀</span>
+            <span class="orbital-ring"></span>
+        </div>
+        <a href="index.html#hero" class="orbit-link" style="--i:0"><span class="orbit-emoji">🏠</span><span
+                class="orbit-label">HOME</span></a>
+        <a href="index.html#experience" class="orbit-link" style="--i:1"><span class="orbit-emoji">⭐</span><span
+                class="orbit-label">LEVELS</span></a>
+        <a href="index.html#skills" class="orbit-link" style="--i:2"><span class="orbit-emoji">🛸</span><span
+                class="orbit-label">SKILLS</span></a>
+        <a href="index.html#projects" class="orbit-link" style="--i:3"><span class="orbit-emoji">🪐</span><span
+                class="orbit-label">PROJECTS</span></a>
+        <a href="index.html#certs" class="orbit-link" style="--i:4"><span class="orbit-emoji">🏆</span><span
+                class="orbit-label">CERTS</span></a>
+        <a href="index.html#contact" class="orbit-link" style="--i:5"><span class="orbit-emoji">💻</span><span
+                class="orbit-label">TERMINAL</span></a>
+    </div>
+
+    <!-- HERO BANNER -->
+    <div class="cert-hero">
+        <div class="cert-hero-title">🌌 CERTIFICATION GALAXY</div>
+        <div class="cert-hero-sub">SPACE TRAVEL LOG — PLANET COLLECTION</div>
+        <div class="mission-bar">
+            <div class="mission-stat"><span id="certCount">7</span>PLANETS VISITED</div>
+            <div class="mission-stat"><span>2024–2026</span>MISSION YEARS</div>
+            <div class="mission-stat"><span>✓</span>VERIFIED CERTS</div>
+        </div>
+        <div class="cert-hero-hint">▼ SCROLL TO TRAVEL THROUGH THE GALAXY ▼</div>
+    </div>
+
+    <!-- SPACE TRAVEL PATH -->
+    <div class="galaxy-section">
+        <div class="space-path" id="spacePath">
+            <!-- Winding path SVG drawn by JS -->
+            <svg id="galaxyPathSVG" aria-hidden="true"></svg>
+
+            <!-- LOCKED PLANET — Mystery / Coming Soon -->
+            <div class="planet-stop locked-stop" aria-label="Classified next certification">
+                <div class="planet-orb" id="planet-locked"
+                    style="background: radial-gradient(circle at 35% 30%, #3d0000, #1f0000, #0a0000); box-shadow: 0 0 20px #ff000033, 0 0 50px #ff000015;"
+                    onclick="lockedAlert()" tabindex="0" role="button"
+                    aria-label="Classified — next certification locked"
+                    onkeydown="if(event.key==='Enter')lockedAlert()">
+                    🔒
+                    <div class="sparkle" style="top:12px;left:14px;--sx:4px;--sy:-7px;background:rgba(255,80,80,0.6);">
+                    </div>
+                    <div class="sparkle"
+                        style="bottom:10px;right:16px;--sx:-3px;--sy:5px;background:rgba(255,80,80,0.4);animation-delay:1s;">
+                    </div>
+                </div>
+                <div class="planet-info">
+                    <div class="planet-num" style="color:var(--red);opacity:0.7;">PLANET 00 · CLASSIFIED</div>
+                    <div class="planet-name" style="color:#555;text-shadow:none;">?????????????<br>?????????????</div>
+                    <div class="planet-issuer" style="color:#444;">REDACTED</div>
+                    <div class="planet-date" style="color:#333;">???? 2026</div>
+                    <div class="planet-desc" style="color:#3a3a3a;">This certification is currently classified.
+                        Transmission intercepted — mission in progress. Access will be granted upon orbit completion.
+                    </div>
+                    <button class="planet-cta-locked" onclick="lockedAlert()">🔒 ACCESS DENIED</button>
+                </div>
+            </div>
+
+            <!-- PLANET 2 — AWS (FLAGSHIP, most prominent) -->
+            <div class="planet-stop" data-cert="aws">
+                <div class="planet-orb" id="planet-aws"
+                    style="background: radial-gradient(circle at 35% 30%, #ff9d00, #ff6600, #c43b00, #2a1000); box-shadow: 0 0 30px #ff660066, 0 0 60px #ff660033;"
+                    onclick="openCertModal('aws')" tabindex="0" role="button"
+                    aria-label="AWS Cloud Practitioner Certification"
+                    onkeydown="if(event.key==='Enter')openCertModal('aws')">
+                    ☁️
+                    <div class="ring" style="border-color: rgba(255,150,0,0.5);"></div>
+                    <div class="sparkle" style="top:10px;left:20px;--sx:8px;--sy:-10px;"></div>
+                    <div class="sparkle" style="bottom:15px;right:10px;--sx:-5px;--sy:6px;animation-delay:.7s;"></div>
+                </div>
+                <div class="planet-info">
+                    <div class="planet-num">PLANET 02 · FLAGSHIP MISSION</div>
+                    <div class="planet-name">AWS CERTIFIED<br>CLOUD PRACTITIONER<br>(CLF-C02)</div>
+                    <div class="planet-issuer">Amazon Web Services</div>
+                    <div class="planet-date">February 2026 · Score: 837/1000</div>
+                    <div class="planet-desc">Certified in core AWS cloud concepts, services, architecture, security,
+                        pricing, and support. Scored 837/1000 on CLF-C02.</div>
+                    <button class="planet-cta" onclick="openCertModal('aws')">▶ INSPECT PLANET</button>
+                </div>
+            </div>
+
+            <!-- PLANET 3 — Oracle Java -->
+            <div class="planet-stop" data-cert="oracle">
+                <div class="planet-orb" id="planet-oracle"
+                    style="background: radial-gradient(circle at 35% 30%, #c0392b, #8e44ad, #1a0030, #0d0015); box-shadow: 0 0 25px #8e44ad55, 0 0 50px #8e44ad22;"
+                    onclick="openCertModal('oracle')" tabindex="0" role="button"
+                    aria-label="Oracle Java Certified Foundations"
+                    onkeydown="if(event.key==='Enter')openCertModal('oracle')">
+                    ☕
+                    <div class="sparkle" style="top:8px;right:18px;--sx:-6px;--sy:-8px;"></div>
+                </div>
+                <div class="planet-info">
+                    <div class="planet-num">PLANET 03</div>
+                    <div class="planet-name">JAVA CERTIFIED<br>FOUNDATIONS ASSOCIATE</div>
+                    <div class="planet-issuer">Oracle</div>
+                    <div class="planet-date">July 2025</div>
+                    <div class="planet-desc">Learnt core Java fundamentals — OOP, data types,
+                        control flow, and standard library essentials.</div>
+                    <button class="planet-cta" onclick="openCertModal('oracle')">▶ INSPECT PLANET</button>
+                </div>
+            </div>
+
+            <!-- PLANET 4 — Postman -->
+            <div class="planet-stop" data-cert="postman">
+                <div class="planet-orb" id="planet-postman"
+                    style="background: radial-gradient(circle at 35% 30%, #ff6b35, #e44d26, #8b2500, #1a0500); box-shadow: 0 0 25px #ff6b3555, 0 0 50px #ff6b3522;"
+                    onclick="openCertModal('postman')" tabindex="0" role="button" aria-label="Postman API Fundamentals"
+                    onkeydown="if(event.key==='Enter')openCertModal('postman')">
+                    📮
+                    <div class="sparkle" style="top:14px;left:12px;--sx:5px;--sy:-9px;"></div>
+                    <div class="sparkle" style="bottom:10px;right:20px;--sx:-4px;--sy:8px;animation-delay:.5s;"></div>
+                </div>
+                <div class="planet-info">
+                    <div class="planet-num">PLANET 04</div>
+                    <div class="planet-name">API FUNDAMENTALS<br>STUDENT EXPERT</div>
+                    <div class="planet-issuer">Postman</div>
+                    <div class="planet-date">July 2025</div>
+                    <div class="planet-desc">Mastered REST APIs, HTTP methods, authentication,
+                        environment variables, and test scripting in Postman.</div>
+                    <button class="planet-cta" onclick="openCertModal('postman')">▶ INSPECT PLANET</button>
+                </div>
+            </div>
+
+            <!-- PLANET 5 — IBM SQL -->
+            <div class="planet-stop" data-cert="ibm-sql">
+                <div class="planet-orb" id="planet-ibm-sql"
+                    style="background: radial-gradient(circle at 35% 30%, #00bcd4, #006064, #002b2d, #001215); box-shadow: 0 0 25px #00bcd455, 0 0 50px #00bcd422;"
+                    onclick="openCertModal('ibm-sql')" tabindex="0" role="button"
+                    aria-label="IBM SQL and Relational Databases"
+                    onkeydown="if(event.key==='Enter')openCertModal('ibm-sql')">
+                    🗄️
+                    <div class="sparkle" style="top:12px;right:12px;--sx:-8px;--sy:-6px;"></div>
+                </div>
+                <div class="planet-info">
+                    <div class="planet-num">PLANET 05</div>
+                    <div class="planet-name">SQL AND RELATIONAL<br>DATABASES 101</div>
+                    <div class="planet-issuer">IBM / Cognitive Class</div>
+                    <div class="planet-date">March 2025</div>
+                    <div class="planet-desc">Learnt SQL, ER models, SELECT queries, JOINs,
+                        aggregations, and relational database integrity constraints.</div>
+                    <button class="planet-cta" onclick="openCertModal('ibm-sql')">▶ INSPECT PLANET</button>
+                </div>
+            </div>
+
+            <!-- PLANET 6 — IBM Python -->
+            <div class="planet-stop" data-cert="ibm-python">
+                <div class="planet-orb" id="planet-ibm-python"
+                    style="background: radial-gradient(circle at 35% 30%, #ffd54f, #f9a825, #7a5000, #301f00); box-shadow: 0 0 25px #ffd54f55, 0 0 50px #ffd54f22;"
+                    onclick="openCertModal('ibm-python')" tabindex="0" role="button"
+                    aria-label="IBM Python 101 for Data Science"
+                    onkeydown="if(event.key==='Enter')openCertModal('ibm-python')">
+                    🐍
+                    <div class="sparkle" style="bottom:12px;left:12px;--sx:-6px;--sy:5px;animation-delay:.9s;"></div>
+                </div>
+                <div class="planet-info">
+                    <div class="planet-num">PLANET 06</div>
+                    <div class="planet-name">PYTHON 101<br>FOR DATA SCIENCE</div>
+                    <div class="planet-issuer">IBM / Cognitive Class</div>
+                    <div class="planet-date">March 2025</div>
+                    <div class="planet-desc">Learnt NumPy, Pandas, Matplotlib and intro data
+                        wrangling techniques for data science workflows.</div>
+                    <button class="planet-cta" onclick="openCertModal('ibm-python')">▶ INSPECT PLANET</button>
+                </div>
+            </div>
+
+            <!-- PLANET 7 — Finlatics -->
+            <div class="planet-stop" data-cert="finlatics">
+                <div class="planet-orb" id="planet-finlatics"
+                    style="background: radial-gradient(circle at 35% 30%, #66bb6a, #2e7d32, #0a2e0c, #020f02); box-shadow: 0 0 25px #66bb6a55, 0 0 50px #66bb6a22;"
+                    onclick="openCertModal('finlatics')" tabindex="0" role="button"
+                    aria-label="Finlatics Data Science with Python"
+                    onkeydown="if(event.key==='Enter')openCertModal('finlatics')">
+                    📊
+                    <div class="sparkle" style="top:10px;right:15px;--sx:-7px;--sy:-9px;"></div>
+                </div>
+                <div class="planet-info">
+                    <div class="planet-num">PLANET 07</div>
+                    <div class="planet-name">DATA SCIENCE<br>WITH PYTHON</div>
+                    <div class="planet-issuer">Finlatics</div>
+                    <div class="planet-date">February 2025</div>
+                    <div class="planet-desc">Learnt Data Science principles and performed real-world data analysis on
+                        Bank Data using Python and visualization tools.</div>
+                    <button class="planet-cta" onclick="openCertModal('finlatics')">▶ INSPECT PLANET</button>
+                </div>
+            </div>
+
+            <!-- PLANET 8 — Coursera Networking -->
+            <div class="planet-stop" data-cert="coursera">
+                <div class="planet-orb" id="planet-coursera"
+                    style="background: radial-gradient(circle at 35% 30%, #29b6f6, #0277bd, #01324f, #001522); box-shadow: 0 0 25px #29b6f655, 0 0 50px #29b6f622;"
+                    onclick="openCertModal('coursera')" tabindex="0" role="button"
+                    aria-label="Coursera Computer Networking"
+                    onkeydown="if(event.key==='Enter')openCertModal('coursera')">
+                    🌐
+                    <div class="ring" style="border-color: rgba(41,182,246,0.4);"></div>
+                    <div class="sparkle" style="top:12px;left:18px;--sx:7px;--sy:-8px;"></div>
+                    <div class="sparkle" style="bottom:8px;right:14px;--sx:-5px;--sy:9px;animation-delay:.6s;"></div>
+                </div>
+                <div class="planet-info">
+                    <div class="planet-num">PLANET 08 · ORIGIN MISSION</div>
+                    <div class="planet-name">BITS AND BYTES OF<br>COMPUTER NETWORKING</div>
+                    <div class="planet-issuer">Coursera / Google</div>
+                    <div class="planet-date">November 2024</div>
+                    <div class="planet-desc">Learnt key networking concepts including TCP/IP, DNS, DHCP, NAT, and
+                        network troubleshooting fundamentals.</div>
+                    <button class="planet-cta" onclick="openCertModal('coursera')">▶ INSPECT PLANET</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ═══════════════════ MODAL ═══════════════════ -->
+    <div class="cert-modal" id="certModal" role="dialog" aria-modal="true" aria-label="Certificate Details">
+        <div class="cert-modal-box" id="certModalBox">
+            <button class="modal-close" id="modalClose" aria-label="Close modal">✕ CLOSE</button>
+            <div class="modal-header">
+                <div class="modal-planet-icon" id="modalIcon"></div>
+                <div class="modal-title-group">
+                    <div class="modal-cert-name" id="modalName"></div>
+                    <div class="modal-issuer" id="modalIssuer"></div>
+                    <div class="modal-date" id="modalDate"></div>
+                </div>
+            </div>
+            <div class="modal-desc" id="modalDesc"></div>
+            <div class="modal-cert-img-wrap">
+                <img class="modal-cert-img" id="modalImg" src="" alt="Certificate" style="display:none;" />
+                <div class="modal-cert-placeholder" id="modalPlaceholder">
+                    🪐 CERTIFICATE IMAGE<br><br>
+                    To show your certificate here, add image files to the<br>
+                    portfolio folder named:<br><br>
+                    <span id="modalImgHint" style="color:var(--blue);"></span>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <a class="modal-btn primary" id="modalLink" href="#" target="_blank" rel="noopener">
+                    🔗 VIEW CERTIFICATE ONLINE
+                </a>
+                <button class="modal-btn secondary" onclick="closeCertModal()">✕ CLOSE PANEL</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <span>VAIBHAV KUMAR</span> &nbsp;|&nbsp; CERTIFICATION GALAXY &nbsp;|&nbsp;
+        <a href="index.html">← BACK TO MAIN PORTFOLIO</a> &nbsp;|&nbsp; © 2026
+    </footer>
+
+    <script src="js/shared.js"></script>
+    <script src="js/certifications.js"></script>
+</body>
+
+</html>

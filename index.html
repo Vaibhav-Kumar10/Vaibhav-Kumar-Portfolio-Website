@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover" />
+    <title>VAIBHAV.EXE | Cloud • AWS • BACKEND • ANDROID • AI/ML</title>
+    <meta name="description"
+        content="Vaibhav Kumar — AWS Certified Cloud & Security Developer. Retro arcade interactive portfolio." />
+    <meta name="author" content="Vaibhav Kumar" />
+    <meta property="og:title" content="VAIBHAV.EXE" />
+    <meta property="og:description" content="Cloud • AWS • BACKEND • ANDROID • AI/ML" />
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230a0a0f'/><text y='24' font-size='24' fill='%23b388ff'>V</text></svg>" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <!-- OPT: non-blocking font load (media=print → onload swap) -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323:wght@400&family=Share+Tech+Mono&display=swap"
+        rel="stylesheet" media="print" onload="this.media='all'" />
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap"
+            rel="stylesheet" />
+    </noscript>
+
+    <link rel="stylesheet" href="css/shared.css">
+    <link rel="stylesheet" href="css/index.css">
+
+</head>
+
+<body>
+
+    <!-- CUSTOM CURSOR -->
+    <div id="cursor"></div>
+    <div id="cursor-dot"></div>
+
+    <!-- LOADER -->
+    <div id="loader">
+        <div class="loader-title">⚡ VAIBHAV.EXE</div>
+        <div style="font-family:var(--mono);font-size:12px;color:#555;">Initializing portfolio subsystems...</div>
+        <div class="loader-bar-wrap">
+            <div class="loader-bar" id="loaderBar"></div>
+        </div>
+        <div class="loader-text" id="loaderText">Loading kernel...</div>
+    </div>
+
+    <!-- STARFIELD -->
+    <canvas id="starfield"></canvas>
+
+
+    <!-- NAV -->
+    <nav id="nav" aria-label="Main Navigation">
+        <div class="nav-logo">VAIBHAV.EXE</div>
+        <div class="nav-links">
+            <a href="#hero">HOME</a>
+            <a href="#experience">LEVELS</a>
+            <a href="#skills">SKILLS</a>
+            <a href="#projects">PROJECTS</a>
+            <a href="#certs">CERTS</a>
+            <a href="#contact">TERMINAL</a>
+        </div>
+        <!-- Spaceship toggle (mobile only) -->
+        <button id="ship-toggle" class="ship-toggle" aria-label="Open menu" aria-expanded="false">🚀</button>
+    </nav>
+
+    <!-- Orbital menu overlay (mobile) -->
+    <div id="orbital-menu" class="orbital-menu" aria-hidden="true">
+        <button class="orbital-close" id="orbital-close" aria-label="Close menu">✕</button>
+        <div class="orbital-center">
+            <span class="orbital-ship">🚀</span>
+            <span class="orbital-ring"></span>
+        </div>
+        <a href="#hero" class="orbit-link" style="--i:0"><span class="orbit-emoji">🏠</span><span
+                class="orbit-label">HOME</span></a>
+        <a href="#experience" class="orbit-link" style="--i:1"><span class="orbit-emoji">⭐</span><span
+                class="orbit-label">LEVELS</span></a>
+        <a href="#skills" class="orbit-link" style="--i:2"><span class="orbit-emoji">🛸</span><span
+                class="orbit-label">SKILLS</span></a>
+        <a href="#projects" class="orbit-link" style="--i:3"><span class="orbit-emoji">🪐</span><span
+                class="orbit-label">PROJECTS</span></a>
+        <a href="#certs" class="orbit-link" style="--i:4"><span class="orbit-emoji">🏆</span><span
+                class="orbit-label">CERTS</span></a>
+        <a href="#contact" class="orbit-link" style="--i:5"><span class="orbit-emoji">💻</span><span
+                class="orbit-label">TERMINAL</span></a>
+    </div>
+
+    <!-- ══════════ HERO ══════════ -->
+    <section id="hero" aria-label="Hero">
+        <div class="hero-grid"></div>
+        <div class="hero-title">VAIBHAV.EXE</div>
+        <div class="hero-sub">CLOUD &nbsp;•&nbsp; AWS &nbsp;•&nbsp; BACKEND &nbsp;•&nbsp; ANDROID &nbsp;•&nbsp; AI/ML
+        </div>
+        <div
+            style="font-family:var(--mono);font-size:13px;color:#888;max-width:500px;text-align:center;line-height:1.8;">
+            B.Tech CSE @ VIT Bhopal &nbsp;|&nbsp; CGPA: 9.43<br />
+            AWS Certified Cloud Practitioner
+        </div>
+        <div class="hero-stats">
+            <div class="stat-box">
+                <div class="stat-num">9.43</div>
+                <div class="stat-lbl">CGPA</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-num" id="expCount">2</div>
+                <div class="stat-lbl">XP JOBS</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-num">3</div>
+                <div class="stat-lbl">PROJECTS</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-num">1</div>
+                <div class="stat-lbl">AWS CERT</div>
+            </div>
+        </div>
+        <div class="hero-prompt">▶ PRESS ENTER TO START ◀</div>
+    </section>
+
+    <!-- ══════════ EXPERIENCE ══════════ -->
+    <section id="experience" aria-label="Experience">
+        <div class="sec-heading">LEVEL <span>MAP</span> — EXPERIENCE</div>
+        <div class="level-map reveal">
+            <div class="level-node" onclick="openPanel('lvl1')" tabindex="0"
+                onkeydown="if(event.key==='Enter')openPanel('lvl1')" aria-label="AlgoUniversity">
+                <div class="node-circle" title="AlgoUniversity">
+                    💻
+                    <div class="node-num">01</div>
+                </div>
+                <div class="node-label">SWE CO-OP<br />ALGOUNIVERSITY</div>
+            </div>
+            <div class="level-path"></div>
+            <div class="level-node" onclick="openPanel('lvl2')" tabindex="0"
+                onkeydown="if(event.key==='Enter')openPanel('lvl2')" aria-label="MP Police">
+                <div class="node-circle" style="border-color:var(--blue);box-shadow:var(--glow-b);" title="MP Police">
+                    🛡️
+                    <div class="node-num" style="background:var(--blue);">02</div>
+                </div>
+                <div class="node-label">STUDENT INTERN<br />MP POLICE</div>
+            </div>
+            <div class="level-path" style="background:linear-gradient(90deg,var(--blue),var(--green));"></div>
+            <div class="level-node" style="opacity:.45;" aria-label="Future">
+                <div class="node-circle" style="border-color:#333;box-shadow:none;filter:grayscale(1);">
+                    ❓
+                    <div class="node-num" style="background:#333;">03</div>
+                </div>
+                <div class="node-label">NEXT LEVEL<br />UNLOCKED SOON</div>
+            </div>
+        </div>
+        <p style="text-align:center;margin-top:30px;font-family:var(--pixel);font-size:8px;color:#555;">
+            [CLICK A NODE TO INSPECT]
+        </p>
+    </section>
+
+    <!-- EXPERIENCE PANELS -->
+    <div class="exp-panel" id="panel-lvl1" role="dialog" aria-modal="true" aria-label="AlgoUniversity details">
+        <div class="panel-box">
+            <button class="panel-close" onclick="closePanel('lvl1')" aria-label="Close">✕</button>
+            <div class="panel-title">💻 SWE CO-OP</div>
+            <div class="panel-co">AlgoUniversity &nbsp;|&nbsp; <span style="color:#555;">Co-operative Education</span>
+            </div>
+            <div class="panel-body">
+                <ul class="exp-list">
+                    <li>⚡ Built scalable Online Judge using Django + SQLite3</li>
+                    <li>🐳 Containerized with Docker & deployed on AWS EC2</li>
+                    <li>🔐 Secure multi-language execution sandbox (Python/C++/Java)</li>
+                    <li>📈 100+ daily submissions processed reliably</li>
+                    <li>🧠 RBAC + real-time evaluation → 80% grading time reduced</li>
+                    <li>🚀 CI/CD with GitHub Actions → 40% faster deployments</li>
+                </ul>
+
+                <div class="tech-tags">
+                    <span>Django</span>
+                    <span>Docker</span>
+                    <span>AWS</span>
+                    <span>CI/CD</span>
+                    <span>Python</span>
+                </div>
+
+                <div class="exp-links">
+                    <a href="https://oj-project-w5uv.onrender.com/" target="_blank" class="exp-btn live">▶ LIVE DEMO</a>
+                    <a href="https://github.com/Vaibhav-Kumar10/OJ-Project" target="_blank" class="exp-btn code">⚡
+                        SOURCE</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Panels for experience -->
+    <div class="exp-panel" id="panel-lvl2" role="dialog" aria-modal="true" aria-label="MP Police details">
+        <div class="panel-box" style="border-color:var(--blue);box-shadow:var(--glow-b);">
+            <button class="panel-close" onclick="closePanel('lvl2')" aria-label="Close">✕</button>
+            <div class="panel-title">🛡️ STUDENT INTERN</div>
+            <div class="panel-co">Madhya Pradesh Police &nbsp;|&nbsp; <span style="color:#555;">Cybersecurity
+                    Division</span></div>
+            <div class="panel-body">
+                <ul class="exp-list">
+                    <li>🛡️ Worked with Cyber Crime Cell & Forensic Unit</li>
+                    <li>📊 Researched 10+ real-world cyber attack patterns</li>
+                    <li>🎤 Conducted security awareness sessions for 300+ students</li>
+                    <li>🚨 Covered phishing, SIM swap, ATM fraud prevention</li>
+                    <li>🏛️ Exposure to government-scale security operations</li>
+                </ul>
+
+                <div class="tech-tags">
+                    <span>Cybersecurity</span>
+                    <span>Digital Forensics</span>
+                    <span>Threat Analysis</span>
+                    <span>Awareness Training</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════════ SKILLS ══════════ -->
+    <section id="skills" aria-label="Skills">
+        <div class="sec-heading">SKILL <span>TREE</span></div>
+        <div class="skill-tree reveal">
+
+
+            <!-- ══════════ LANGUAGES ══════════ -->
+            <div class="skill-branch">
+                <div class="branch-title">⚡ LANGUAGES</div>
+                <div class="skill-node unlocked">
+                    <div class="s-dot"></div>
+                    <div>
+                        <div class="s-name">Python</div>
+                        <div class="xp-bar">
+                            <div class="xp-fill" data-w="90"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-node unlocked">
+                    <div class="s-dot"></div>
+                    <div>
+                        <div class="s-name">C++</div>
+                        <div class="xp-bar">
+                            <div class="xp-fill" data-w="75"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-node unlocked">
+                    <div class="s-dot"></div>
+                    <div>
+                        <div class="s-name">Java</div>
+                        <div class="xp-bar">
+                            <div class="xp-fill" data-w="70"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-node unlocked">
+                    <div class="s-dot"></div>
+                    <div>
+                        <div class="s-name">HTML / CSS / JavaScript</div>
+                        <div class="xp-bar">
+                            <div class="xp-fill" data-w="85"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- ══════════ FRAMEWORKS ══════════ -->
+            <div class="skill-branch">
+                <div class="branch-title">🧩 FRAMEWORKS</div>
+
+                <div class="skill-node unlocked">
+                    <div class="s-dot"></div>
+                    <div>
+                        <div class="s-name">Django</div>
+                        <div class="xp-bar">
+                            <div class="xp-fill" data-w="80"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-node unlocked">
+                    <div class="s-dot"></div>
+                    <div>
+                        <div class="s-name">Flask</div>
+                        <div class="xp-bar">
+                            <div class="xp-fill" data-w="75"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-node unlocked">
+                    <div class="s-dot"></div>
+                    <div>
+                        <div class="s-name">Flutter / Dart</div>
+                        <div class="xp-bar">
+                            <div class="xp-fill" data-w="60"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-node unlocked">
+                    <div class="s-dot"></div>
+                    <div>
+                        <div class="s-name">Tkinter, PyQT5</div>
+                        <div class="xp-bar">
+                            <div class="xp-fill" data-w="55"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- ══════════ DATABASES ══════════ -->
+            <div class="skill-branch">
+                <div class="branch-title">🗄 DATABASES</div>
+
+                <div class="skill-node unlocked">
+                    <div class="s-dot"></div>
+                    <div>
+                        <div class="s-name">MySQL</div>
+                        <div class="xp-bar">
+                            <div class="xp-fill" data-w="80"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-node unlocked">
+                    <div class="s-dot"></div>
+                    <div>
+                        <div class="s-name">SQLite3</div>
+                        <div class="xp-bar">
+                            <div class="xp-fill" data-w="65"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-node unlocked">
+                    <div class="s-dot"></div>
+                    <div>
+                        <div class="s-name">Firebase</div>
+                        <div class="xp-bar">
+                            <div class="xp-fill" data-w="45"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- ══════════ CLOUD & AWS ══════════ -->
+            <div class="skill-branch">
+                <div class="branch-title">☁️ CLOUD / AWS</div>
+
+                <div class="skill-node unlocked">
+                    <div class="s-dot"></div>
+                    <div>
+                        <div class="s-name">AWS EC2</div>
+                        <div class="xp-bar">
+                            <div class="xp-fill" data-w="75"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-node unlocked">
+                    <div class="s-dot"></div>
+                    <div>
+                        <div class="s-name">AWS S3</div>
+                        <div class="xp-bar">
+                            <div class="xp-fill" data-w="75"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-node unlocked">
+                    <div class="s-dot"></div>
+                    <div>
+                        <div class="s-name">Lambda</div>
+                        <div class="xp-bar">
+                            <div class="xp-fill" data-w="65"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-node unlocked">
+                    <div class="s-dot"></div>
+                    <div>
+                        <div class="s-name">IAM / VPC</div>
+                        <div class="xp-bar">
+                            <div class="xp-fill" data-w="65"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- ══════════ DevOps ══════════ -->
+            <div class="skill-branch">
+                <div class="branch-title">🔧 DEVOPS</div>
+                <div class="skill-node unlocked">
+                    <div class="s-dot"></div>
+                    <div>
+                        <div class="s-name">Docker</div>
+                        <div class="xp-bar">
+                            <div class="xp-fill" data-w="70"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-node unlocked">
+                    <div class="s-dot"></div>
+                    <div>
+                        <div class="s-name">Git / GitHub</div>
+                        <div class="xp-bar">
+                            <div class="xp-fill" data-w="70"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-node unlocked">
+                    <div class="s-dot"></div>
+                    <div>
+                        <div class="s-name">CI / CD</div>
+                        <div class="xp-bar">
+                            <div class="xp-fill" data-w="62"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-node locked">
+                    <div class="s-dot"></div>
+                    <div>
+                        <div class="s-name">Kubernetes</div>
+                        <div class="xp-bar">
+                            <div class="xp-fill" data-w="20"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- ══════════ TOOLS & DATA ══════════ -->
+            <div class="skill-branch">
+                <div class="branch-title">🛠 TOOLS & DATA</div>
+
+                <div class="skill-node unlocked">
+                    <div class="s-dot"></div>
+                    <div>
+                        <div class="s-name">Postman</div>
+                        <div class="xp-bar">
+                            <div class="xp-fill" data-w="75"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-node unlocked">
+                    <div class="s-dot"></div>
+                    <div>
+                        <div class="s-name">NumPy / Pandas / Matplotlib</div>
+                        <div class="xp-bar">
+                            <div class="xp-fill" data-w="70"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-node unlocked">
+                    <div class="s-dot"></div>
+                    <div>
+                        <div class="s-name">REST APIs & DSA</div>
+                        <div class="xp-bar">
+                            <div class="xp-fill" data-w="85"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ══════════ PROJECTS ══════════ -->
+    <section id="projects" aria-label="Projects">
+        <div class="sec-heading">PROJECT <span>CARTRIDGES</span></div>
+        <div class="cartridges reveal">
+
+            <!-- HRIDAYVAYU -->
+            <div class="cartridge" aria-label="HridayVayu project">
+                <div class="cart-inner">
+                    <div class="cart-front">
+                        <div class="cart-icon">💓</div>
+                        <div class="cart-name">HRIDAYVAYU</div>
+                        <div class="cart-tech">Flask • ML • Sensors • Cloud • IoT</div>
+                    </div>
+                    <div class="cart-back">
+                        <div class="cart-name">HRIDAYVAYU</div>
+                        <div class="cart-desc">
+                            ML-powered asthma risk prediction system integrating live sensor data.
+                            Achieved 87% accuracy and reduced alert latency by 30% with real-time analytics pipeline.
+                        </div>
+                        <!-- <a href="https://github.com/Vaibhav-Kumar10" class="cart-link" target="_blank" rel="noopener">
+                            ▶ VIEW CODE
+                        </a> -->
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- CYBERBUDDY -->
+            <div class="cartridge" aria-label="CyberBuddy project">
+                <div class="cart-inner">
+                    <div class="cart-front">
+                        <div class="cart-icon">🛡️</div>
+                        <div class="cart-name">CYBERBUDDY</div>
+                        <div class="cart-tech">Python • Gemini API • Extension • Security</div>
+                    </div>
+                    <div class="cart-back">
+                        <div class="cart-name">CYBERBUDDY</div>
+                        <div class="cart-desc">
+                            AI-powered Chrome extension that detects phishing URLs in real time
+                            using Google Gemini API and ML classification to protect users from cyber threats.
+                        </div>
+                        <a href="https://github.com/Vaibhav-Kumar10" class="cart-link" target="_blank" rel="noopener"
+                            aria-label="View CyberBuddy source code on GitHub">
+                            ▶ VIEW CODE
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- BREW CREW -->
+            <div class="cartridge" aria-label="Brew Crew project">
+                <div class="cart-inner">
+                    <div class="cart-front">
+                        <div class="cart-icon">☕</div>
+                        <div class="cart-name">BREW CREW</div>
+                        <div class="cart-tech">Flutter • Firebase • Streams</div>
+                    </div>
+                    <div class="cart-back">
+                        <div class="cart-name">BREW CREW</div>
+                        <div class="cart-desc">
+                            Real-time cloud-based coffee shop app using Firebase Auth + Firestore streams.
+                            Event-driven architecture with live sync, layered state management, and reactive UI updates.
+                        </div>
+                        <a href="https://github.com/Vaibhav-Kumar10/Coffee-App" class="cart-link" target="_blank"
+                            rel="noopener" aria-label="View Brew Crew source code on GitHub">
+                            ▶ VIEW CODE
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ══════════ CERTIFICATIONS TEASER ══════════ -->
+    <section id="certs" aria-label="Certifications"
+        style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;">
+        <div class="sec-heading">CERTIFICATION <span>GALAXY</span></div>
+        <div class="reveal" style="max-width:680px;width:100%;">
+
+            <!-- Mini planet preview row -->
+            <div style="display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-bottom:36px;">
+                <div style="font-size:48px;animation:certFloat 3s ease-in-out infinite;" title="AWS">☁️</div>
+                <div style="font-size:42px;animation:certFloat 3s ease-in-out infinite;animation-delay:.4s;"
+                    title="Oracle">☕</div>
+                <div style="font-size:42px;animation:certFloat 3s ease-in-out infinite;animation-delay:.8s;"
+                    title="Postman">📮</div>
+                <div style="font-size:42px;animation:certFloat 3s ease-in-out infinite;animation-delay:1.2s;"
+                    title="IBM SQL">🗄️</div>
+                <div style="font-size:42px;animation:certFloat 3s ease-in-out infinite;animation-delay:1.6s;"
+                    title="IBM Python">🐍</div>
+                <div style="font-size:42px;animation:certFloat 3s ease-in-out infinite;animation-delay:2s;"
+                    title="Finlatics">📊</div>
+                <div style="font-size:42px;animation:certFloat 3s ease-in-out infinite;animation-delay:2.4s;"
+                    title="Coursera">🌐</div>
+            </div>
+
+            <div style="font-family:var(--mono);font-size:14px;color:#888;line-height:2;margin-bottom:30px;">
+                7 certifications earned across AWS, Oracle, IBM, Postman, Finlatics &amp; Coursera.<br />
+                Travel through the <span style="color:var(--purple);">Certification Galaxy</span> — each certificate is
+                a planet waiting to be explored.
+            </div>
+
+            <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;">
+                <a href="certifications.html"
+                    style="font-family:var(--pixel);font-size:10px;color:var(--green);border:2px solid var(--green);padding:12px 24px;text-decoration:none;letter-spacing:1px;transition:.2s;display:inline-block;"
+                    onmouseover="this.style.background='var(--green)';this.style.color='#000';"
+                    onmouseout="this.style.background='transparent';this.style.color='var(--green)';"
+                    aria-label="Explore Certification Galaxy">
+                    🚀 LAUNCH INTO GALAXY
+                </a>
+            </div>
+
+        </div>
+    </section>
+    <style>
+        @keyframes certFloat {
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-12px) rotate(5deg);
+            }
+        }
+    </style>
+
+    <!-- ══════════ CONTACT TERMINAL ══════════ -->
+    <section id="contact" aria-label="Contact Terminal">
+        <div class="sec-heading"><span>TERMINAL</span> — CONTACT</div>
+        <div class="reveal">
+            <div class="terminal" role="region" aria-label="Interactive terminal">
+                <div class="term-header">
+                    <div class="term-dot" style="background:#ff6b6b;"></div>
+                    <div class="term-dot" style="background:#ffb347;"></div>
+                    <div class="term-dot" style="background:#39ff14;"></div>
+                    <div class="term-title">VAIBHAV@PORTFOLIO ~ BASH</div>
+                </div>
+                <div class="term-body" id="termBody">
+                    <div class="term-line comment"># Welcome to Vaibhav's terminal. Type 'help' to see commands.</div>
+                    <div class="term-line comment"># Available: help, email, github, linkedin, resume, skills, about,
+                        clear</div>
+                </div>
+                <div class="term-input-row">
+                    <span class="term-prompt">vaibhav@portfolio:~$&nbsp;</span>
+                    <input type="text" id="term-input" placeholder="type a command..." aria-label="Terminal input"
+                        autocomplete="off" spellcheck="false" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <span>VAIBHAV KUMAR</span> &nbsp;|&nbsp; MADE WITH ❤️ + ☕ &nbsp;|&nbsp;
+        DEPLOYED ON <span>AWS S3</span> &nbsp;|&nbsp; © 2026
+    </footer>
+
+    <!-- SCROLL HINT -->
+    <div class="scroll-hint" aria-hidden="true">SCROLL ↓</div>
+
+    <!-- KEY HINTS -->
+    <div class="key-hint" aria-hidden="true">
+        <span class="key">↑↓</span> NAVIGATE<br />
+        <span class="key">ESC</span> CLOSE<br />
+        <span class="key">~</span> TERMINAL
+    </div>
+
+    <script src="js/shared.js"></script>
+    <script src="js/index.js"></script>
+
+</body>
+
+</html>
