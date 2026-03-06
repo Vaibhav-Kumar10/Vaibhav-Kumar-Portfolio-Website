@@ -138,7 +138,7 @@ const termCmds = {
     dsa() {
         return `<span style="color:var(--green)">[ DSA & COMPETITIVE PROGRAMMING STATS ]</span><br>
     <span style="color:#ffa116">LeetCode</span>   : <a href="https://leetcode.com/u/huTFu8nIjY/" target="_blank" style="color:var(--blue)">Rating 1649</a><br>
-    <span style="color:#2f8d46">GFG</span>        : <a href="https://www.geeksforgeeks.org/user/vaibhavkumar10/" target="_blank" style="color:var(--blue)">Institution Rank 120</a><br>
+    <span style="color:#2f8d46">GFG</span>        : <a href="https://www.geeksforgeeks.org/profile/vaibhavbcyq?tab=activity" target="_blank" style="color:var(--blue)">Institution Rank 120</a><br>
     <span style="color:#00ea64">HackerRank</span> : <a href="https://www.hackerrank.com/profile/vaibhav_23bce101" target="_blank" style="color:var(--blue)">5★ C++, Python, SQL</a><br>
     <span style="color:#1f8acb">Codeforces</span> : <a href="https://codeforces.com/profile/vaibhavkumar10" target="_blank" style="color:var(--blue)">Rating 969</a><br>
     <span style="color:#5B4638">CodeChef</span>   : <a href="https://www.codechef.com/users/vaibhavkumar10" target="_blank" style="color:var(--blue)">1★ (1249)</a><br>
@@ -193,3 +193,4 @@ document.querySelectorAll('.cartridge').forEach(card => {
     }, { passive: true });
     card.addEventListener('mouseleave', () => { rect = null; card.style.transform = ''; }, { passive: true });
 });
+
