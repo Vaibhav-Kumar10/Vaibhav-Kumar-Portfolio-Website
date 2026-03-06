@@ -364,14 +364,20 @@ footer a:hover {
     flex-direction: column;
     align-items: center;
     gap: 6px;
-    transform: rotate(calc(var(--i) * 60deg)) translateX(0) rotate(calc(var(--i) * -60deg)) scale(0);
+    /* transform: rotate(calc(var(--i) * 60deg)) translateX(0) rotate(calc(var(--i) * -60deg)) scale(0); */
+    transform: rotate(calc(var(--i) * 51.4deg)) translateX(0) rotate(calc(var(--i) * -51.4deg)) scale(0);
     opacity: 0;
     transition: transform .45s cubic-bezier(.34, 1.56, .64, 1), opacity .3s ease;
     transition-delay: calc(var(--i) * 70ms);
 }
 
-.orbital-menu.open .orbit-link {
+/* .orbital-menu.open .orbit-link {
     transform: rotate(calc(var(--i) * 60deg)) translateX(130px) rotate(calc(var(--i) * -60deg)) scale(1);
+    opacity: 1;
+} */
+
+.orbital-menu.open .orbit-link {
+    transform: rotate(calc(var(--i) * 51.4deg)) translateX(130px) rotate(calc(var(--i) * -51.4deg)) scale(1);
     opacity: 1;
 }
 
@@ -434,8 +440,12 @@ footer a:hover {
         height: 200px;
     }
 
-    .orbital-menu.open .orbit-link {
+    /* .orbital-menu.open .orbit-link {
         transform: rotate(calc(var(--i) * 60deg)) translateX(105px) rotate(calc(var(--i) * -60deg)) scale(1);
+    } */
+
+    .orbital-menu.open .orbit-link {
+        transform: rotate(calc(var(--i) * 51.4deg)) translateX(105px) rotate(calc(var(--i) * -51.4deg)) scale(1);
     }
 
     /* Larger touch targets */

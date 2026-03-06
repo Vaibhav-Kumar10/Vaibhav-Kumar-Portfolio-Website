@@ -14,7 +14,7 @@ const loaderEl = document.getElementById('loader');
 const loaderBar = document.getElementById('loaderBar');
 const loaderText = document.getElementById('loaderText');
 
-const sectionIds = ['hero', 'experience', 'skills', 'projects', 'certs', 'contact'];
+const sectionIds = ['hero', 'experience', 'skills', 'leaderboard', 'projects', 'certs', 'contact'];
 const sectionEls = sectionIds.map(id => document.getElementById(id));
 let secIdx = 0;
 
@@ -127,17 +127,24 @@ const termCmds = {
                 <span style="color:var(--blue)">email</span>      — get email address<br>
                 <span style="color:var(--blue)">github</span>     — open GitHub profile<br>
                 <span style="color:var(--blue)">linkedin</span>   — open LinkedIn<br>
-                <span style="color:var(--blue)">resume</span>     — open Resume<br>
+                <span style="color:var(--blue)">resume</span>     — open Resume<br>                <span style="color:var(--blue)">dsa</span>        — view coding profiles 🏆<br>
                 <span style="color:var(--blue)">skills</span>     — list top skills<br>
-                <span style="color:var(--blue)">about</span>      — who is Vaibhav?<br>
                 <span style="color:var(--blue)">clear</span>      — clear terminal`;
     },
     email() { return '📧 <a href="mailto:vaibhav.udr21@gmail.com" style="color:var(--blue)">vaibhav.udr21@gmail.com</a>'; },
     github() { window.open('https://github.com/Vaibhav-Kumar10', '_blank'); return '🔗 Opening GitHub... <a href="https://github.com/Vaibhav-Kumar10" style="color:var(--blue)" target="_blank">github.com/Vaibhav-Kumar10</a>'; },
     linkedin() { window.open('https://www.linkedin.com/in/vaibhav-kumar-87557528a/', '_blank'); return '🔗 Opening LinkedIn... <a href="https://www.linkedin.com/in/vaibhav-kumar-87557528a/" style="color:var(--blue)" target="_blank">linkedin.com/in/vaibhav-kumar-87557528a</a>'; },
     resume() { window.open('https://drive.google.com/file/d/12f5u01-WAilwhRdhymA0NHi0hcRCRI2E/view?usp=sharing', '_blank'); return '\u{1F517} Opening Resume... <a href="https://drive.google.com/file/d/12f5u01-WAilwhRdhymA0NHi0hcRCRI2E/view?usp=sharing" style="color:var(--blue)" target="_blank">View Resume</a>'; },
+    dsa() {
+        return `<span style="color:var(--green)">[ DSA & COMPETITIVE PROGRAMMING STATS ]</span><br>
+    <span style="color:#ffa116">LeetCode</span>   : <a href="https://leetcode.com/u/huTFu8nIjY/" target="_blank" style="color:var(--blue)">Rating 1649</a><br>
+    <span style="color:#2f8d46">GFG</span>        : <a href="https://www.geeksforgeeks.org/user/vaibhavkumar10/" target="_blank" style="color:var(--blue)">Institution Rank 120</a><br>
+    <span style="color:#00ea64">HackerRank</span> : <a href="https://www.hackerrank.com/profile/vaibhav_23bce101" target="_blank" style="color:var(--blue)">5★ C++, Python, SQL</a><br>
+    <span style="color:#1f8acb">Codeforces</span> : <a href="https://codeforces.com/profile/vaibhavkumar10" target="_blank" style="color:var(--blue)">Rating 969</a><br>
+    <span style="color:#5B4638">CodeChef</span>   : <a href="https://www.codechef.com/users/vaibhavkumar10" target="_blank" style="color:var(--blue)">1★ (1249)</a><br>
+    `;
+    },
     skills() { return `<span style="color:var(--green)">TOP SKILLS:</span><br>☁️ AWS (EC2,S3,Lambda,IAM) &nbsp; 🐍 Python &nbsp; 🔐 Security<br>🐳 Docker &nbsp; 🟨 JavaScript &nbsp; 🗄️ SQL/DynamoDB`; },
-    about() { return `<span style="color:var(--purple)">Vaibhav Kumar</span> — B.Tech CSE @ VIT Bhopal (CGPA 9.43)<br>AWS Certified | Security Enthusiast | Cloud Developer<br>Building tomorrow's infrastructure, one commit at a time.`; },
     clear() { termBodyEl.innerHTML = '<div class="term-line comment"># Terminal cleared. Type \'help\' for commands.</div>'; return null; }
 };
 

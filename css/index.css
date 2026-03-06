@@ -463,6 +463,128 @@ section {
     transition: width 1s ease;
 }
 
+
+
+
+
+/* ─── Leaderboard ─── */
+/* ─── Leaderboard Base Styles (Desktop) ─── */
+.leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--mono);
+    font-size: 16px;
+    text-align: left;
+}
+
+.leaderboard-table thead tr {
+    border-bottom: 2px solid var(--purple);
+    color: var(--purple);
+    font-family: var(--pixel);
+    font-size: 10px;
+}
+
+.leaderboard-table th,
+.leaderboard-table td {
+    padding: 16px;
+}
+
+.leaderboard-table tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+}
+
+.leaderboard-table tbody tr:hover {
+    background: rgba(179, 136, 255, 0.08);
+}
+
+.leaderboard-table .rank {
+    color: var(--green);
+}
+
+.leaderboard-table .action-cell {
+    text-align: right;
+}
+
+.view-btn {
+    color: var(--green);
+    text-decoration: none;
+    font-family: var(--pixel);
+    font-size: 8px;
+    border: 1px solid var(--green);
+    padding: 6px 10px;
+    transition: 0.2s;
+}
+
+.view-btn:hover {
+    background: var(--green);
+    color: #000;
+    box-shadow: var(--glow-g);
+}
+
+/* ─── Leaderboard Mobile Styles (Cards) ─── */
+@media (max-width: 768px) {
+
+    .leaderboard-table,
+    .leaderboard-table tbody,
+    .leaderboard-table tr,
+    .leaderboard-table td {
+        display: block;
+        width: 100%;
+    }
+
+    /* Hide the desktop headers */
+    .leaderboard-table thead {
+        display: none;
+    }
+
+    /* Turn rows into cards */
+    .leaderboard-table tbody tr {
+        margin-bottom: 20px;
+        border: 2px solid var(--border);
+        background: rgba(25, 25, 50, 0.4);
+        /* Matches your var(--card) vibe */
+        padding: 10px 16px;
+        border-radius: 4px;
+    }
+
+    .leaderboard-table tbody tr:hover {
+        border-color: var(--purple);
+    }
+
+    /* Flexbox for each cell to push label left, value right */
+    .leaderboard-table td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0;
+        border-bottom: 1px dotted var(--border);
+        text-align: right;
+    }
+
+    .leaderboard-table td:last-child {
+        border-bottom: none;
+        justify-content: center;
+        /* Center the button on mobile */
+        margin-top: 10px;
+    }
+
+    .leaderboard-table .action-cell {
+        text-align: center;
+    }
+
+    /* Pull the label from the data-label attribute in HTML */
+    .leaderboard-table td::before {
+        content: attr(data-label);
+        font-family: var(--pixel);
+        font-size: 8px;
+        color: #888;
+        text-transform: uppercase;
+        margin-right: 20px;
+    }
+}
+
+
 /* ─── Projects ─── */
 #projects {
     background: linear-gradient(180deg, transparent, rgba(13, 13, 26, .6));
